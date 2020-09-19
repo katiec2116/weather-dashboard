@@ -1,1 +1,34 @@
 
+h1 {
+    padding: 20px;
+    font-weight: bolder;
+    font-size: 45px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(26, 57, 88);
+    color: whitesmoke;
+}
+
+
+
+.list{
+    background-color: lightgray;
+}
+
+h3{
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+p{
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+
+.forecastTitle{
+    font-size: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+

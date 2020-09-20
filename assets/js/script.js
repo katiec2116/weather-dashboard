@@ -57,15 +57,22 @@ function getWeather() {
         let lat =  weather.coord.lat;
         let long = weather.coord.lon;
 
+        let icon = "http://openweathermap.org/img/wn/" + weather.weather[0].icon + "@2x.png"
+        let iconPic = $('<img src="'+ icon +'">').addClass("align-bottom");
 
-   
+
 
         // clear out current weather div
         $("#currentWeather").empty();
         // get date
         let now = " ("+ moment().format('l')+ ")";
         // add city name and date to the page
-        $("#currentWeather").append($("<h3>").text(searchedCity + now));
+        $("#currentWeather").append($("<h3>").text(searchedCity + now).addClass("cityName"));
+        // add icon 
+        $(".cityName").append($(iconPic));
+        // $(".cityName").append.(iconPic);
+
+        // add current weather data to the page
         $("#currentWeather").append($("<p>").text("Temperature: " + temp + " °F"));
         $("#currentWeather").append($("<p>").text("Humidity: " + humidity + "%"));
         $("#currentWeather").append($("<p>").text("Wind Speed: " + windSpeed + " MPH"));

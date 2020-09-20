@@ -70,8 +70,6 @@ function getWeather() {
         $("#currentWeather").append($("<h3>").text(searchedCity + now).addClass("cityName"));
         // add icon 
         $(".cityName").append($(iconPic));
-        // $(".cityName").append.(iconPic);
-
         // add current weather data to the page
         $("#currentWeather").append($("<p>").text("Temperature: " + temp + " °F"));
         $("#currentWeather").append($("<p>").text("Humidity: " + humidity + "%"));
@@ -87,8 +85,37 @@ function getWeather() {
         let uvIndex = uv.value;
 
         $("#currentWeather").append($("<p>").text("UV Index: ").addClass("uv"));
-        $(".uv").append($("<button>").text(uvIndex).addClass("btn btn-danger"));
+        $(".uv").append($("<button>").text(uvIndex).addClass("uv-color btn text-white"));
 
+        if(uvIndex < 3){
+            $(".uv-color").addClass("green"); 
+        }
+        else if (uvIndex < 6){
+            $(".uv-color").addClass("yellow");
+        }
+        else if (uvIndex < 8){
+            $(".uv-color").addClass("orange");
+        }
+        else if (uvIndex < 11){
+            $(".uv-color").addClass("red");
+        }
+        else if (uvIndex >= 11){
+            $(".uv-color").addClass("purple");
+        }
+
+        // switch (uvIndex){
+        //     case (uvIndex < 3): $(".uv-color").addClass("green");
+        //     break;
+        //     case (uvIndex < 6): $(".uv-color").addClass("yellow");
+        //     break;
+        //     case (uvIndex < 8): $(".uv-color").addClass("orange");
+        //     break;
+        //     case (uvIndex < 11): $(".uv-color").addClass("red");
+        //     break;
+        //     case (uvIndex >= 11): $(".uv-color").addClass("purple");
+        //     break;
+
+        // }
 
         });
 

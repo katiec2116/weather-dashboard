@@ -11,16 +11,15 @@ h1 {
 
 
 .list{
-    background-color: lightgray;
+    background-color: rgb(240, 236, 236);
 }
 
-h3{
+#search{
     font-size: 20px;
-    font-weight: bold;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-p{
+h3{
     font-size: 30px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -32,3 +31,29 @@ p{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+
+p{
+    margin-top:27px;
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+img{
+    width: 40px;
+    height: 40px;
+}
+ .green {
+    background-color: green;
+ }
+ .yellow {
+    background-color: rgb(251, 255, 5);
+ }
+ .orange {
+    background-color: rgb(255, 187, 0);
+ }
+ .red {
+    background-color: rgb(255, 0, 0);
+ }
+ .purple {
+    background-color: rgb(140, 0, 255);
+ }

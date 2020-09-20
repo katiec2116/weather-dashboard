@@ -14,8 +14,18 @@
 
 // hold list of cities searched
 let cities = [];
-let searchedCity = "";
+let searchedCity = "Orlando";
 const apiKey = "46f263eda7f39c71ab13a43ad05a47d0"
+
+onLoad();
+
+
+
+function onLoad(){
+    $(".list-group").prepend($("<li>").text(searchedCity).addClass("list-group-item"));
+    getWeather();
+}
+
 
 // when magnify button is clicked to search a NEW city 
 $("#submitCity").on("click", function(event) {
@@ -24,6 +34,8 @@ $("#submitCity").on("click", function(event) {
     searchedCity = $("#location").val().trim();
     // city from the textbox is then added to the array
     cities.push(searchedCity);
+    // add city to search history lost
+    $(".list-group").prepend($("<li>").text(searchedCity).addClass("list-group-item"));
     //first api call
     getWeather();
 
@@ -32,21 +44,48 @@ $("#submitCity").on("click", function(event) {
 
 function getWeather() {
     // create url
-    let queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + searchedCity +"&APPID=46f263eda7f39c71ab13a43ad05a47d0";
+    let weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + searchedCity +"&APPID=46f263eda7f39c71ab13a43ad05a47d0";
     // Creates AJAX call for the specific movie button being clicked
 
     $.ajax({
-      url: queryURL,
+      url: weatherURL,
       method: "GET"
-    }).then(function(response) {
-        let temp = ((response.main.temp - 273.15) * 1.80 + 32).toFixed(2);
-        let humidity = response.main.humidity;
-        let windSpeed = response.wind.speed;
-        let lat =  response.coord.lat;
-        let long = response.coord.lon;
+    }).then(function(weather) {
+        let temp = ((weather.main.temp - 273.15) * 1.80 + 32).toFixed(1);
+        let humidity = weather.main.humidity;
+        let windSpeed = weather.wind.speed;
+        let lat =  weather.coord.lat;
+        let long = weather.coord.lon;
+
+
+   
+
+        // clear out current weather div
+        $("#currentWeather").empty();
+        // get date
+        let now = " ("+ moment().format('l')+ ")";
+        // add city name and date to the page
+        $("#currentWeather").append($("<h3>").text(searchedCity + now));
+        $("#currentWeather").append($("<p>").text("Temperature: " + temp + " °F"));
+        $("#currentWeather").append($("<p>").text("Humidity: " + humidity + "%"));
+        $("#currentWeather").append($("<p>").text("Wind Speed: " + windSpeed + " MPH"));
+  
+
+    var uvURL = "http://api.openweathermap.org/data/2.5/uvi?&APPID=46f263eda7f39c71ab13a43ad05a47d0&lat=" + lat + "&lon=" + long;
+
+    $.ajax({
+        url: uvURL,
+        method: "GET"
+      }).then(function(uv) {
+        let uvIndex = uv.value;
+
+        $("#currentWeather").append($("<p>").text("UV Index: ").addClass("uv"));
+        $(".uv").append($("<button>").text(uvIndex).addClass("btn btn-danger"));
+
+
+        });
 
     });
-  
 }
 
 

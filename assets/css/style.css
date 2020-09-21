@@ -33,9 +33,12 @@ h3{
 
 
 p{
-    margin-top:27px;
     font-size: 15px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.forecastRow p {
+    font-size: 18px;
 }
 
 img{
@@ -46,7 +49,7 @@ img{
     background-color: green;
  }
  .yellow {
-    background-color: rgb(251, 255, 5);
+    background-color: rgb(251, 255, 0);
  }
  .orange {
     background-color: rgb(255, 187, 0);
@@ -56,4 +59,8 @@ img{
  }
  .purple {
     background-color: rgb(140, 0, 255);
+ }
+
+ button{
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
  }

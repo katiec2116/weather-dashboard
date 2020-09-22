@@ -137,7 +137,7 @@ $(document).ready(function () {
                     $(".uv-color").addClass("purple text-white");
                 }
 
-                let forecastURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exclude=hourly,minutely,alerts&appid=" + apiKey;
+                let forecastURL = "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exclude=hourly,minutely,alerts&appid=" + apiKey;
 
  
 

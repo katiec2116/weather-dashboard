@@ -68,7 +68,7 @@ $(document).ready(function () {
 
     function getWeather() {
         // create url
-        let weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + searchedCity + "&APPID=" + apiKey;
+        let weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchedCity + "&APPID=" + apiKey;
         // Creates AJAX call for the specific movie button being clicked
 
         $.ajax({
@@ -88,7 +88,7 @@ $(document).ready(function () {
             var windValue = "wi-wind-direction-" + windD.toLowerCase()
 
 
-            let icon = "http://openweathermap.org/img/wn/" + weather.weather[0].icon + "@2x.png"
+            let icon = "https://openweathermap.org/img/wn/" + weather.weather[0].icon + "@2x.png"
             let iconPic = $('<img src="' + icon + '">').addClass("align-bottom");
             let windIcon =  $("<iconify-icon>").attr("data-icon",windValue)
             
@@ -110,7 +110,7 @@ $(document).ready(function () {
             $("#currentWeather").append($("<p>").text("Wind Speed: " + windSpeed + " MPH " + windD + " ").addClass("mt-4 wind"));
             $(".wind").append(windIcon);
 
-            var uvURL = "http://api.openweathermap.org/data/2.5/uvi?&APPID=" + apiKey +"&lat=" + lat + "&lon=" + long;
+            var uvURL = "https://api.openweathermap.org/data/2.5/uvi?&APPID=" + apiKey +"&lat=" + lat + "&lon=" + long;
 
             $.ajax({
                 url: uvURL,

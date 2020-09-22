@@ -63,11 +63,6 @@ $(document).ready(function () {
         getWeather();
     });
 
-    function degToCompass(num) {
-        var val = Math.floor((num / 22.5) + 0.5);
-        var arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
-        return arr[(val % 16)];
-    }
 
 
     function getWeather() {
@@ -87,9 +82,9 @@ $(document).ready(function () {
 
             // calculate wind direction from degrees
             // var windD = weather.wind.deg
-            var val = Math.floor((weather.wind.deg / 22.5) + 0.5);
-            var arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
-            var windD =  arr[(val % 16)];
+            var val = Math.floor((weather.wind.deg / 45) + 0.5);
+            var arr = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+            var windD =  arr[(val % 8)];
 
             let icon = "http://openweathermap.org/img/wn/" + weather.weather[0].icon + "@2x.png"
             let iconPic = $('<img src="' + icon + '">').addClass("align-bottom");

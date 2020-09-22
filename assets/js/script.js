@@ -88,7 +88,7 @@ $(document).ready(function () {
             var windValue = "wi-wind-direction-" + windD.toLowerCase()
 
 
-            let icon = "https://cors-anywhere.herokuapp.com/http://openweathermap.org/img/wn/" + weather.weather[0].icon + "@2x.png"
+            let icon = "http://openweathermap.org/img/wn/" + weather.weather[0].icon + "@2x.png"
             let iconPic = $('<img src="' + icon + '">').addClass("align-bottom");
             let windIcon =  $("<iconify-icon>").attr("data-icon",windValue)
             

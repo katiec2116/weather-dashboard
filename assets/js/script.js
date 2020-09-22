@@ -14,7 +14,7 @@
 $(document).ready(function () {
     // hold list of cities searched
     let cities = [];
-    let searchedCity = "";
+    let searchedCity;
     const apiKey = "46f263eda7f39c71ab13a43ad05a47d0"
     let lat;
     let long;
@@ -57,8 +57,9 @@ $(document).ready(function () {
 
 
     // when selecting from search history list
-    $(".history").on("click", function (event) {
+    $(document).on("click", ".history", function (event) {
         event.preventDefault();
+        console.log("hi");
         searchedCity = $(this).attr("data-value");
         getWeather();
     });
@@ -81,13 +82,17 @@ $(document).ready(function () {
             long = weather.coord.lon;
 
             // calculate wind direction from degrees
-            // var windD = weather.wind.deg
             var val = Math.floor((weather.wind.deg / 45) + 0.5);
             var arr = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
             var windD =  arr[(val % 8)];
+            var windValue = "wi-wind-direction-" + windD.toLowerCase()
+
 
             let icon = "http://openweathermap.org/img/wn/" + weather.weather[0].icon + "@2x.png"
             let iconPic = $('<img src="' + icon + '">').addClass("align-bottom");
+            let windIcon =  $("<iconify-icon>").attr("data-icon",windValue)
+            
+           
 
 
 
@@ -102,8 +107,8 @@ $(document).ready(function () {
             // add current weather data to the page
             $("#currentWeather").append($("<p>").text("Temperature: " + temp + " °F").addClass("mt-4"));
             $("#currentWeather").append($("<p>").text("Humidity: " + humidity + "%").addClass("mt-4"));
-            $("#currentWeather").append($("<p>").text("Wind Speed: " + windSpeed + " MPH " + windD).addClass("mt-4"));
-
+            $("#currentWeather").append($("<p>").text("Wind Speed: " + windSpeed + " MPH " + windD + " ").addClass("mt-4 wind"));
+            $(".wind").append(windIcon);
 
             var uvURL = "http://api.openweathermap.org/data/2.5/uvi?&APPID=" + apiKey +"&lat=" + lat + "&lon=" + long;
 
@@ -144,7 +149,7 @@ $(document).ready(function () {
                     for (var i = 1; i < 6; i++) {
                         // create values to show in forecast cards
                         let col = $("<div>").addClass("col forceast");
-                        let card = $("<div>").addClass("card-body rightSide forecast bg-primary rounded text-white");
+                        let card = $("<div>").addClass("card-body rightSide forecast bg-primary rounded text-white mb-3");
                         // creat time element and convert 
                         let time = $("<p>").addClass("mb-2").text(moment.unix(forecast.daily[i].dt).format("M/DD/YYYY"));
                         // populate elements with data for each day
@@ -178,6 +183,7 @@ $(document).ready(function () {
         if (localStorage.getItem("cities") != null) {
 
             cities = JSON.parse(localStorage.getItem("cities"));
+
             cities.forEach(city => {
                 let hBtn = $("<button>").text(city).addClass("list-group-item btn text-left history").attr("data-value", city);
                 // add city to search history lost and add data value attribute

@@ -28,5 +28,10 @@ MIT
 
 No tests available
 
+
+## Questions?
+
+You can reach me at katiecampbell21@outlook.com
+
 ---
 
